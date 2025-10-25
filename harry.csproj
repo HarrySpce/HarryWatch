@@ -1,0 +1,61 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <Authors></Authors>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <ApplicationIcon>Windows\Assets\appLogo.ico</ApplicationIcon>
+    <DebugType>none</DebugType>
+    <Version />
+    <PackageId></PackageId>
+    <Company />
+    <Product />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Resources\**" />
+    <EmbeddedResource Remove="Resources\**" />
+    <None Remove="Resources\**" />
+    <Page Remove="Resources\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="background.jpg" />
+    <None Remove="background1.jpg" />
+    <None Remove="Windows\Assets\appLogo.ico" />
+    <None Remove="Windows\Assets\KantumruyPro-Regular.ttf" />
+    <None Remove="Windows\Assets\snow.png" />
+    <None Remove="Windows\Converters\PincushionDistortion.ps" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Windows\Assets\appLogo.ico" />
+    <Resource Include="Windows\Assets\KantumruyPro-Regular.ttf">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Windows\Converters\PincushionDistortion.ps" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNetBungieAPI" Version="2.12.1" />
+    <PackageReference Include="Hardcodet.NotifyIcon.Wpf" Version="1.1.0" />
+    <PackageReference Include="MathConverter" Version="2.2.1-preview" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.2" />
+    <PackageReference Include="OxyPlot.Wpf" Version="2.1.2" />
+    <PackageReference Include="SharpCompress" Version="0.36.0" />
+    <PackageReference Include="System.Management" Version="7.0.0" />
+    <PackageReference Include="System.ServiceProcess.ServiceController" Version="8.0.0" />
+    <PackageReference Include="WindivertDotnet" Version="1.1.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Windows\Controls\Button.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+  </ItemGroup>
+
+</Project>

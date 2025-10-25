@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="Harry.Controls.ConnectionInfoPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Harry.Controls"
+             mc:Ignorable="d">
+    <Border>
+        <StackPanel Orientation="Vertical" Height="Auto" Margin="0,0,-8,0">
+            <StackPanel.Resources>
+                <Style TargetType="StackPanel">
+                    <Setter Property="Orientation" Value="Horizontal"/>
+                    <Setter Property="Height" Value="36"/>
+                    <Setter Property="Width" Value="Auto"/>
+                    <Setter Property="Margin" Value="0,-4"/>
+                </Style>
+                <Style TargetType="Label">
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="Width" Value="90"/>
+                    <Setter Property="Margin" Value="-4,0,-10,0"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                </Style>
+                <Style TargetType="Path">
+                    <Setter Property="Width" Value="25"/>
+                    <Setter Property="Fill" Value="{StaticResource TitleColor}"/>
+                    <Setter Property="Stretch" Value="Uniform"/>
+                    <Setter Property="Margin" Value="2"/>
+                    <Setter Property="Opacity" Value="0.85"/>
+                </Style>
+            </StackPanel.Resources>
+
+            <Border x:Name="Top" Visibility="Collapsed">
+                <StackPanel Orientation="Horizontal" Height="14">
+                    <Label Content="DL" 
+                           FontFamily="{StaticResource Kantumruy}" FontSize="12"
+                           Foreground="{StaticResource InactiveColor}" 
+                           Margin="26,-4,0,-7"/>
+                    <Label Content="UL" 
+                           FontFamily="{StaticResource Kantumruy}" FontSize="12"
+                           Foreground="{StaticResource InactiveColor}" 
+                           Margin="-14,-4,0,-7"/>
+                </StackPanel>
+            </Border>
+            
+            <Border x:Name="_3074" Visibility="Collapsed">
+                <StackPanel VerticalAlignment="Center">
+                    <Path Data="{StaticResource RegionChest}" ToolTip="3074"/>
+                    <Label x:Name="_3074DL" Content="0B/s" Foreground="{StaticResource TitleColor}"/>
+                    <Label x:Name="_3074UL" Content="0B/s" Foreground="{StaticResource TitleColor}"/>
+                </StackPanel>
+            </Border>
+
+            <Border x:Name="_7500" Visibility="Collapsed">
+                <StackPanel VerticalAlignment="Center">
+                    <Path Data="{StaticResource Engram}" ToolTip="7500"/>
+                    <Label x:Name="_7500DL" Content="0B/s" Foreground="{StaticResource TitleColor}"/>
+                    <Label x:Name="_7500UL" Content="0B/s" Foreground="{StaticResource TitleColor}"/>
+                </StackPanel>
+            </Border>
+
+            <Border x:Name="_27k" Visibility="Collapsed">
+                <StackPanel VerticalAlignment="Center">
+                    <Path Data="{StaticResource DefaultIcon}" ToolTip="27K"/>
+                    <Label x:Name="_27kDL" Content="0B/s" Foreground="{StaticResource TitleColor}"/>
+                    <Label x:Name="_27kUL" Content="0B/s" Foreground="{StaticResource TitleColor}"/>
+                </StackPanel>
+            </Border>
+
+            <Border x:Name="_30k" Visibility="Collapsed">
+                <StackPanel VerticalAlignment="Center">
+                    <Path Data="{StaticResource Traveller}" ToolTip="30K"/>
+                    <Label x:Name="_30kDL" Content="0B/s" Foreground="{StaticResource TitleColor}"/>
+                    <Label x:Name="_30kUL" Content="0B/s" Foreground="{StaticResource TitleColor}"/>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    </Border>
+</UserControl>

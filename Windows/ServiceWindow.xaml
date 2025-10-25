@@ -1,0 +1,229 @@
+﻿<Window x:Class="Harry.ServiceWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Harry"
+        xmlns:controls="clr-namespace:Harry.Controls"
+        mc:Ignorable="d"
+        SizeToContent="WidthAndHeight"
+        Style="{StaticResource TransparentWindow}">
+
+    <Grid Margin="10,8">
+        <Grid.Resources>
+            <Style TargetType="Label">
+                <Setter Property="Foreground" Value="{StaticResource TitleColor}"/>
+                <Setter Property="Opacity" Value="0.9"/>
+                <Setter Property="FontFamily" Value="{StaticResource Kantumruy}"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Margin" Value="-6,-6"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="IsHitTestVisible" Value="False"/>
+            </Style>
+            <Style TargetType="controls:Checkbox">
+                <Setter Property="Width" Value="20"/>
+                <Setter Property="Height" Value="20"/>
+                <Setter Property="Margin" Value="0,4"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+            </Style>
+            <Style TargetType="Border">
+                <Setter Property="Background" Value="{StaticResource LightBackColor}"/>
+                <Setter Property="CornerRadius" Value="12"/>
+            </Style>
+            <Style TargetType="TextBox">
+                <Setter Property="MinWidth" Value="40"/>
+                <Setter Property="FontSize" Value="16"/>
+                <Setter Property="Margin" Value="0,0,-1,0"/>
+                <Setter Property="CaretBrush" Value="White"/>
+                <Setter Property="HorizontalContentAlignment" Value="Right"/>
+                <Setter Property="FontFamily" Value="{StaticResource Kantumruy}"/>
+                <Setter Property="Foreground" Value="{StaticResource AccentColor}"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+            </Style>
+        </Grid.Resources>
+
+        <!-- TOP CONTROLS -->
+        <Grid x:Name="WindowControls" Height="34" VerticalAlignment="Top">
+            <controls:WindowControlButton Click="ExitButtonClick" Margin="0,0,8,0"
+                                          HorizontalAlignment="Right" VerticalAlignment="Center"
+                                          PathData="{StaticResource CloseIcon}"
+                                          Scale="0.95" MaxScale="1.0" Height="22" Width="22"
+                                          FillColor="{StaticResource InactiveColor}" GlowColor="#d93732"/>
+
+            <StackPanel x:Name="UserInfo" Orientation="Horizontal" HorizontalAlignment="Left" Width="220">
+                <StackPanel.Resources>
+                    <Style TargetType="Label">
+                        <Setter Property="Foreground" Value="{StaticResource AccentColor}"/>
+                        <Setter Property="FontFamily" Value="{StaticResource SmallTitleFont}"/>
+                        <Setter Property="FontSize" Value="18"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="VerticalContentAlignment" Value="Center"/>
+                    </Style>
+                </StackPanel.Resources>
+
+
+                <Label x:Name="User_Nickname" Content="f1Lthz4"/>
+                <Label Content=":"/>
+                <Label x:Name="User_Rank" Content="Debug"/>
+            </StackPanel>
+        </Grid>
+
+        <Border Width="290" Height="400" Margin="0,35,0,18">
+            <ScrollViewer Margin="10">
+                <StackPanel Orientation="Vertical" Margin="0">
+
+                    <!-- MAIN WINDOW SETTINGS -->
+                    <Grid>
+                        <controls:Checkbox x:Name="MAIN_Clock" Click="MAIN_Clock_Click"/>
+                        <Label Content="Display current time"/>
+                    </Grid>
+
+                    <Grid>
+                        <controls:Checkbox x:Name="MAIN_Speed" Click="MAIN_Speed_Click"/>
+                        <Label Content="Display connections info"/>
+                    </Grid>
+
+                    <Grid>
+                        <controls:Checkbox x:Name="KeybindsSuppress" Click="KeysSuppress_Click"/>
+                        <Label Content="Disable keybinds on alt-tab"/>
+                    </Grid>
+
+                    <Grid Height="28">
+                        <Label Content="Timer disappear time"/>
+                        <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight" HorizontalAlignment="Right">
+                            <TextBox x:Name="MAIN_DecaySecs" MaxLength="2" MaxLines="1"
+                                     TextChanged="MAIN_ModuleDecayTime_TextChanged"/>
+                            <Label Content="sec" FontFamily="{StaticResource Kantumruy}" Padding="6,1,6,0"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid>
+                        <controls:Checkbox x:Name="MAIN_Snow" Click="MAIN_Snow_Click"/>
+                        <Label Content="Snow"/>
+                    </Grid>
+
+
+                    <Line Margin="5,3" X1="0" X2="270" 
+                          StrokeThickness="1" Stroke="{StaticResource InactiveColor}"/>
+
+                    <!-- OVERLAY -->
+                    <Grid Height="28">
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBox x:Name="BungieName" Text="Name#0000" Width="150"
+                                     LostFocus="BungieName_LostFocus"
+                                     VerticalAlignment="Center"
+                                     PreviewMouseLeftButtonDown="BungieName_MouseDown"
+                                     TextChanged="BungieName_TextChanged"/>
+
+                            <controls:Button x:Name="FindButton" Text="Find" 
+                                             Visibility="Collapsed"
+                                             VerticalAlignment="Center"
+                                             CornerRadius="6" Margin="6,-2,0,0"
+                                             Click="FindButton_Click"/>
+                        </StackPanel>
+
+                        <Label Content="API tracker"/>
+                    </Grid>
+
+                    <Grid Height="28">
+                        <Label Content="Overlay x-offset"/>
+                        <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight" HorizontalAlignment="Right">
+                            <TextBox x:Name="OverlayX" MaxLength="4" MaxLines="1"
+                                     TextChanged="OverlayX_TextChanged"/>
+                            <Label Content="px" FontFamily="{StaticResource Kantumruy}" Padding="6,1,6,0"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Height="28">
+                        <Label Content="Overlay y-offset"/>
+                        <StackPanel Orientation="Horizontal" FlowDirection="LeftToRight" HorizontalAlignment="Right">
+                            <TextBox x:Name="OverlayY" MaxLength="4" MaxLines="1"
+                                     TextChanged="OverlayY_TextChanged"/>
+                            <Label Content="px" FontFamily="{StaticResource Kantumruy}" Padding="6,1,6,0"/>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid>
+                        <controls:Checkbox x:Name="OverlayStartup" Click="OverlayStartup_Click"/>
+                        <Label Content="Run overlay with app start"/>
+                    </Grid>
+
+                    <Grid>
+                        <controls:Checkbox x:Name="OverlayActive" Click="OverlayActive_Click"/>
+                        <Label Content="Hide overlay on inactivity"/>
+                    </Grid>
+
+                    <Grid>
+                        <controls:Checkbox x:Name="ShowTime" Click="OverlayTime_Click"/>
+                        <Label Content="Show current time in overlay"/>
+                    </Grid>
+
+                    <Grid>
+                        <controls:Checkbox x:Name="ShowTimer" Click="OverlayTimer_Click"/>
+                        <Label Content="Show instance timer in overlay"/>
+                    </Grid>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20*"/>
+                            <ColumnDefinition Width="43*"/>
+                        </Grid.ColumnDefinitions>
+                        <controls:Checkbox x:Name="ShowAllTimers" Click="OverlayTogglable_Click" Grid.Column="1" HorizontalAlignment="Left" Margin="152,4,0,4"/>
+                        <Label Content="Show all modules in overlay" Grid.ColumnSpan="2" Margin="-6,0,-6,0"/>
+                    </Grid>
+
+                    <Grid>
+                        <controls:Checkbox x:Name="CountRaids" Click="CountRaids_Click"/>
+                        <Label Content="Count complete raids"/>
+                    </Grid>
+
+                    <Grid>
+                        <controls:Checkbox x:Name="CountDungeons" Click="CountDungeons_Click"/>
+                        <Label Content="Count complete dungeons"/>
+                    </Grid>
+
+
+
+                    <Line Margin="5,3" X1="0" X2="270" 
+                          StrokeThickness="1" Stroke="{StaticResource InactiveColor}"/>
+
+                    <!-- AHK SETTINGS -->
+                    <Grid>
+                        <controls:Checkbox x:Name="AHK_Start" Click="AHK_Click"/>
+                        <Label Content="Run last ahks with app start"/>
+                    </Grid>
+
+                    <Grid>
+                        <controls:Checkbox x:Name="AHK_Close" Click="AHK_Click"/>
+                        <Label Content="Close ahks with app exit"/>
+                    </Grid>
+
+
+
+                    <Line Margin="5,3" X1="0" X2="270" 
+                          StrokeThickness="1" Stroke="{StaticResource InactiveColor}"/>
+
+                    <!-- LOGGING SETTINGS -->
+                    <Grid>
+                        <controls:Checkbox x:Name="KB_Log" Click="KB_Log_Click"/>
+                        <Label Content="Log key presses"/>
+                    </Grid>
+
+                    <Grid>
+                        <controls:Checkbox x:Name="DB_Save" Click="DB_Save_Click"/>
+                        <Label Content="Save packets to database"/>
+                    </Grid>
+                </StackPanel>
+            </ScrollViewer>
+
+        </Border>
+
+        <Grid VerticalAlignment="Bottom">
+            <Label x:Name="VersionString" HorizontalAlignment="Right" Margin="0,-2.5,0,-10" Foreground="{StaticResource InactiveColor}" Content="https://limiter.report" FontSize="14"/>
+            <Label x:Name="TimeString" HorizontalAlignment="Left" Margin="0,-2.5,0,-10" Foreground="{StaticResource InactiveColor}" Content="" FontSize="14"/>
+        </Grid>
+
+    </Grid>
+</Window>

@@ -1,0 +1,62 @@
+﻿<Application x:Class="Harry.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Harry" 
+             xmlns:controls="clr-namespace:Harry.Controls"
+             xmlns:media="clr-namespace:Harry.Controls"
+             xmlns:math="http://hexinnovation.com/math"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
+             xmlns:sf="clr-namespace:WpfSnowfall"
+             StartupUri="Windows/StartupProgressBar.xaml">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Windows/Assets/ControlTemplates.xaml"/>
+                <ResourceDictionary Source="Windows/Assets/Icons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+
+            <math:MathConverter x:Key="Math" />
+
+            <FontFamily x:Key="Kantumruy">pack://application:,,,/Windows/Assets/KantumruyPro-Regular.ttf</FontFamily>
+            <FontFamily x:Key="TitleFont">Calibri</FontFamily>
+            <FontFamily x:Key="SmallTitleFont">Bahnschrift Light</FontFamily>
+            <FontFamily x:Key="BigTextFont">Microsoft JhengHei UI Light</FontFamily>
+
+            <!--Color palette-->
+            <Color x:Key="Accent">#d5d4d8</Color>
+            <SolidColorBrush x:Key="TitleColor" Color="#FFFFFFFF"/>
+            <SolidColorBrush x:Key="AccentColor" Color="#d5d4d8"/>
+            <SolidColorBrush x:Key="FancyColor" Color="#f56e00"/>
+            <SolidColorBrush x:Key="InactiveColor" Color="#BA464646"/>
+            <SolidColorBrush x:Key="BackColor" Color="#3F000000"/>
+            <SolidColorBrush x:Key="LightBackColor" Color="#7F000000"/>
+            <SolidColorBrush x:Key="DividorColor" Color="#CC000000"/>
+
+
+            <SolidColorBrush x:Key="Upload" Color="#DEBACE"/>
+            <SolidColorBrush x:Key="Download" Color="#d1f28e"/>
+
+            <Geometry x:Key="AppIcon">M 406 -398 C 394 -406 380 -415 377 -417 C 376 -418 376 -420 377 -421 C 386 -430 389 -442 388 -455 L 385 -496 L 395 -497 C 412 -499 426 -511 426 -526 L 428 -568 L 408 -539 C 401 -529 387 -523 373 -525 L 337 -531 L 357 -464 C 362 -447 353 -430 334 -423 L 299 -408 C 334 -405 360 -399 378 -395 C 388 -392 397 -394 406 -398 L 406 -398 Z M 190 -432 C 202 -445 214 -457 221 -473 C 207 -467 194 -459 181 -451 C 160 -437 152 -415 149 -390 C 148 -383 152 -332 156 -318 C 160 -304 163 -289 162 -274 C 162 -264 162 -255 162 -244 C 167 -250 173 -254 177 -260 C 192 -284 198 -310 196 -338 C 193 -363 199 -385 211 -406 C 218 -418 226 -429 234 -441 C 233 -442 232 -443 231 -443 C 218 -437 206 -432 190 -432 Z M 184 -151 C 187 -159 190 -167 194 -174 C 203 -192 201 -210 200 -228 C 189 -204 173 -180 184 -151 Z M 918 -378 L 904 -449 L 877 -475 L 731 -598 L 637 -631 L 552 -648 L 527 -632 L 539 -591 L 593 -567 L 664 -526 L 684 -506 L 684 -506 L 717 -473 C 716 -473 715 -473 715 -473 L 731 -456 C 731 -456 716 -422 715 -412 L 705 -460 L 681 -477 C 644 -481 611 -485 611 -485 L 518 -447 L 488 -469 L 440 -472 L 416 -426 L 460 -361 C 444 -373 424 -387 424 -387 L 415 -380 C 413 -379 412 -378 410 -377 C 409 -376 409 -375 408 -374 L 393 -362 L 392 -330 L 419 -311 L 482 -339 L 504 -317 L 519 -303 L 484 -284 L 469 -248 L 447 -219 L 458 -185 L 482 -181 L 513 -200 L 521 -219 L 558 -236 C 560 -229 562 -222 564 -215 L 529 -190 L 521 -153 L 501 -114 C 501 -114 523 -100 525 -98 L 564 -116 L 574 -137 L 585 -140 C 589 -122 592 -110 592 -109 C 590 -107 645 -57 645 -57 L 679 33 L 740 69 L 780 121 C 893 76 973 -15 973 -15 L 939 -120 L 918 -378 Z M 670 -332 L 619 -351 L 596 -383 L 606 -384 L 690 -364 L 670 -332 Z M 1140 -478 C 1128 -537 1106 -588 1086 -624 L 1086 -623 C 1086 -623 1083 -628 1078 -636 C 1076 -641 1073 -646 1069 -652 C 1067 -655 1065 -658 1063 -661 C 1061 -664 1058 -667 1056 -671 C 1036 -699 1004 -735 964 -768 C 923 -800 874 -827 826 -846 C 814 -850 802 -854 790 -858 C 779 -861 768 -864 757 -866 C 752 -868 746 -869 741 -870 C 736 -871 731 -872 727 -873 C 717 -874 708 -875 700 -877 C 700 -877 699 -877 697 -877 C 695 -877 692 -878 687 -878 C 679 -879 667 -880 653 -880 C 624 -882 583 -880 540 -873 C 529 -870 519 -868 508 -865 L 491 -862 L 475 -856 C 465 -853 454 -850 444 -846 C 434 -841 424 -837 414 -833 C 409 -831 404 -829 400 -826 C 395 -824 391 -822 386 -819 C 378 -815 370 -810 362 -806 C 346 -796 333 -787 322 -780 L 322 -780 C 322 -780 321 -779 320 -778 C 318 -777 316 -775 313 -773 C 307 -768 298 -761 288 -753 C 267 -736 246 -716 218 -680 C 211 -673 206 -664 201 -656 C 195 -648 189 -640 184 -631 C 179 -623 174 -614 170 -606 C 165 -597 160 -589 157 -580 C 153 -571 150 -563 147 -555 C 145 -551 143 -547 142 -543 C 140 -540 139 -536 138 -532 C 134 -517 130 -504 127 -494 C 127 -494 139 -519 166 -553 C 163 -544 160 -535 158 -526 C 155 -508 152 -490 149 -472 C 150 -471 150 -471 151 -471 C 153 -473 155 -475 156 -478 C 168 -493 181 -505 199 -511 C 208 -513 216 -517 224 -521 C 239 -528 264 -539 273 -554 C 277 -560 305 -607 316 -627 C 316 -627 316 -628 316 -628 C 316 -628 316 -628 316 -628 C 316 -628 317 -629 317 -629 C 318 -631 319 -633 321 -635 C 330 -649 342 -660 355 -670 C 364 -676 372 -684 379 -693 L 379 -693 C 369 -690 361 -687 353 -685 C 345 -683 336 -681 328 -679 C 320 -677 312 -676 303 -675 C 304 -676 304 -677 304 -677 C 312 -682 320 -687 328 -691 C 362 -710 402 -726 446 -738 C 482 -748 521 -755 562 -757 C 562 -757 563 -757 563 -757 C 616 -757 669 -746 718 -724 L 789 -691 C 789 -691 783 -739 677 -795 C 709 -788 740 -777 769 -763 C 769 -762 770 -762 771 -761 C 855 -714 860 -657 864 -636 C 865 -629 864 -621 863 -613 C 863 -608 861 -603 860 -598 C 861 -597 862 -597 862 -596 C 872 -603 882 -610 893 -617 C 901 -589 917 -564 935 -537 C 935 -547 935 -556 935 -564 C 936 -574 936 -584 938 -593 C 938 -593 938 -593 938 -593 C 950 -569 994 -485 994 -485 C 1000 -500 995 -545 992 -566 C 991 -571 991 -577 990 -583 C 989 -601 979 -620 977 -638 C 983 -627 989 -615 995 -603 C 999 -593 1004 -583 1007 -573 C 1010 -563 1013 -553 1016 -543 L 1023 -512 L 1024 -505 L 1025 -497 L 1027 -482 C 1030 -441 1028 -400 1018 -362 C 1015 -352 1012 -341 1008 -331 C 999 -306 995 -280 997 -254 C 997 -253 997 -253 997 -252 C 997 -247 997 -241 998 -236 C 1006 -245 1013 -254 1020 -264 C 1023 -269 1026 -272 1029 -277 L 1036 -289 C 1041 -298 1047 -307 1051 -316 C 1056 -326 1060 -335 1064 -345 L 1067 -352 L 1070 -359 L 1075 -374 C 1082 -395 1085 -415 1090 -436 C 1092 -457 1096 -479 1095 -500 C 1102 -434 1094 -368 1073 -307 C 1061 -275 1031 -217 996 -175 C 982 -159 977 -138 983 -117 C 983 -117 983 -117 983 -117 C 989 -94 998 -71 1006 -48 C 1023 -67 1066 -118 1083 -147 C 1104 -183 1127 -235 1139 -294 C 1151 -353 1151 -419 1140 -478 Z</Geometry>
+
+            <Style x:Key="TransparentWindow" TargetType="Window">
+                <EventSetter Event="Loaded" Handler="TransparentWindowLoaded"/>
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="AllowsTransparency" Value="True"/>
+                <Setter Property="ResizeMode" Value="NoResize"/>
+                <Setter Property="WindowStyle" Value="None"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Window">
+                            <Grid x:Name="mainddd" MouseDown="BorderMouseDown">
+                                <Border x:Name="backg" BorderThickness="1" BorderBrush="{StaticResource DividorColor}" Background="{StaticResource BackColor}" CornerRadius="12"/>
+                                <ContentPresenter/>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

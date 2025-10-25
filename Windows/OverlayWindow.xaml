@@ -1,0 +1,140 @@
+﻿<Window x:Class="Harry.Windows.OverlayWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Harry.Windows"
+        xmlns:controls="clr-namespace:Harry.Controls"
+        mc:Ignorable="d"
+        ShowInTaskbar="False"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True"
+        x:Name="Win"
+        Title="">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="ModuleBrush" Color="#FFFFFFFF"/>
+        <SolidColorBrush x:Key="Back" Color="#50181818"/>
+    </Window.Resources>
+
+    <Grid x:Name="Content" Width="2560" Height="1440"
+          Margin="-118,0,0,0">
+        <Grid.LayoutTransform>
+            <ScaleTransform x:Name="Scale" ScaleX="1" ScaleY="1"/>
+        </Grid.LayoutTransform>
+
+        <Grid.Effect>
+            <local:PincushionEffect 
+                Width="{Binding Width, ElementName=Win, Converter={StaticResource Math}, ConverterParameter=x*4}"
+                Height="{Binding Height, ElementName=Win, Converter={StaticResource Math}, ConverterParameter=x*4}" 
+                Power="-0.31"/>
+        </Grid.Effect>
+
+        <!--PLACEHOLDER-->
+        <Line X1="0" X2="2560"
+              Y1="0" Y2="1440" Stroke="#00000000"/>
+
+        <Grid x:Name="ModulesGrid"
+          VerticalAlignment="Top"
+          HorizontalAlignment="Left"
+          Margin="0, 44, 0, 0">
+
+            <Grid.RenderTransform>
+                <ScaleTransform ScaleX="1.22"/>
+            </Grid.RenderTransform>
+
+            <Line X1="0" Y1="0" X2="42" Y2="42" StrokeThickness="2" Stroke="#bbffffff"/>
+
+            <Polygon HorizontalAlignment="Left" Margin="0,0,0,10"
+                 Width="42" Height="42" 
+                 Points="0,0 42,0 42,42"
+                 Fill="{StaticResource Back}"/>
+
+            <!--190-->
+            <Grid Height="42" Margin="42,-10,0,0">
+                <Border VerticalAlignment="Top" Height="42"
+                    MinWidth="210">
+                    <Border.Width>
+                        <MultiBinding ConverterParameter="Min(x + 80, 480)" Converter="{StaticResource Math}">
+                            <Binding Path="ActualWidth" ElementName="DisplayLine"/>
+                        </MultiBinding>
+                    </Border.Width>
+
+                    <Border.Background>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#50181818" Offset="0"></GradientStop>
+                            <GradientStop Color="#50181818" Offset="0.85"></GradientStop>
+                            <GradientStop Color="#00000000" Offset="0.95"></GradientStop>
+                            <GradientStop Color="#00000000" Offset="1"></GradientStop>
+                        </LinearGradientBrush>
+                    </Border.Background>
+                </Border>
+
+                <StackPanel x:Name="DisplayLine" VerticalAlignment="Top" HorizontalAlignment="Left" 
+                            Orientation="Horizontal">
+
+                    <StackPanel x:Name="Modules" Height="42" MinWidth="255" MaxWidth="255"
+                                Orientation="Horizontal" HorizontalAlignment="Left">
+                        <StackPanel.Resources>
+                            <Style TargetType="controls:EnabledModuleTimer">
+                                <Setter Property="Margin" Value="0,2,3,4"/>
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="Foreground" Value="{StaticResource ModuleBrush}"/>
+                                <Setter Property="MinOpacity" Value="1.0"/>
+                                <Setter Property="Scale" Value="0.74"/>
+                            </Style>
+                        </StackPanel.Resources>
+                    </StackPanel>
+
+                    <StackPanel Name="Counters" Height="43" Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <Style TargetType="Path">
+                                <Setter Property="VerticalAlignment" Value="Center"/>
+                                <Setter Property="Stretch" Value="Uniform"/>
+                                <Setter Property="Margin" Value="0,2,4,2"/>
+                                <Setter Property="Height" Value="39"/>
+                                <Setter Property="Width" Value="39"/>
+                                <Setter Property="Fill">
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                            <GradientStop Color="White" Offset="0"/>
+                                            <GradientStop Color="White" Offset="0.6"/>
+                                            <GradientStop Color="Transparent" Offset="0.85"/>
+                                            <GradientStop Color="Transparent" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </StackPanel.Resources>
+
+                        <Label Name="Timer" Content="00:00:00" MinWidth="120" MaxWidth="120" Visibility="Collapsed"
+                               FontSize="30" FontFamily="{StaticResource SmallTitleFont}" FontWeight="ExtraBold"
+                               HorizontalContentAlignment="Left" VerticalContentAlignment="Center"
+                               Foreground="{StaticResource ModuleBrush}">
+                            <Label.LayoutTransform>
+                                <ScaleTransform ScaleX="0.96"/>
+                            </Label.LayoutTransform>
+                        </Label>
+
+                        <Grid x:Name="Raid" Visibility="Collapsed" Margin="7,0,0,0">
+
+                            <Ellipse Width="7" Height="7" Fill="#ee67c06b"
+                                     HorizontalAlignment="Left" VerticalAlignment="Center"/>
+
+                            <Label x:Name="RaidLabel" Foreground="{StaticResource ModuleBrush}" Content="0"
+                                   FontFamily="{StaticResource SmallTitleFont}" FontSize="24"
+                                   VerticalContentAlignment="Center" HorizontalContentAlignment="Left" Margin="7,2,-4,0"
+                                   VerticalAlignment="Center" HorizontalAlignment="Right">
+                                <Label.LayoutTransform>
+                                    <ScaleTransform ScaleX="0.96"/>
+                                </Label.LayoutTransform>
+                            </Label>
+                        </Grid>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

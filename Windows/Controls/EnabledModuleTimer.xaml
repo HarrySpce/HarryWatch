@@ -1,0 +1,70 @@
+﻿<UserControl x:Name="parent" 
+             x:Class="Harry.Controls.EnabledModuleTimer"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Harry.Controls"
+             Foreground="White"
+             mc:Ignorable="d">
+
+    <Border Background="Transparent"
+            MouseDown="ToggleButton_MouseDown"
+            MouseEnter="ToggleButton_MouseEnter"
+            MouseLeave="ToggleButton_MouseLeave">
+        <Grid Height="50" Width="50">
+            <Grid.LayoutTransform>
+                <ScaleTransform ScaleX="{Binding Scale}" ScaleY="{Binding Scale}"/>
+            </Grid.LayoutTransform>
+
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Top"
+                        Orientation="Horizontal" Margin="1,2" Panel.ZIndex="1">
+                <StackPanel.Effect>
+                    <DropShadowEffect ShadowDepth="0" Color="Black" BlurRadius="3"/>
+                </StackPanel.Effect>
+
+                <StackPanel.Resources>
+                    <Style TargetType="Path">
+                        <Setter Property="Width" Value="15"/>
+                        <Setter Property="Stretch" Value="Uniform"/>
+                        <Setter Property="Fill" Value="{Binding Foreground, ElementName=parent}"/>
+                        <Setter Property="Margin" Value="0,0,0,0"/>
+                    </Style>
+                    <Style TargetType="Label">
+                        <Setter Property="Width" Value="32"/>
+                        <Setter Property="Margin" Value="-6,-10,-5,-10"/>
+                    </Style>
+                </StackPanel.Resources>
+                <Path x:Name="DL" Data="{StaticResource ArrowDown}" Visibility="Collapsed"/>
+                <Path x:Name="UL" Data="{StaticResource ArrowUp}" Visibility="Collapsed"/>
+            </StackPanel>
+            
+            <Path x:Name="ToggleButton" 
+                  Stretch="Uniform"
+                  Margin="4"
+                  Data="{StaticResource ArcIcon}" 
+                  Fill="{Binding Foreground, ElementName=parent}"
+                  VerticalAlignment="Center" HorizontalAlignment="Center">
+                <Path.Effect>
+                    <DropShadowEffect ShadowDepth="0" Color="Black" BlurRadius="2"/>
+                </Path.Effect>
+            </Path>
+
+            <Grid HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                  IsHitTestVisible="False">
+                <Label x:Name="Timer" Visibility="Hidden" IsHitTestVisible="False"
+                       VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                       VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                       Margin="-4,-10"
+                       Content="00:00" 
+                       Foreground="{Binding Foreground, ElementName=parent}" Opacity="0.95"
+                       FontFamily="{StaticResource TitleFont}" FontWeight="ExtraBold" FontSize="21">
+                    <Label.Effect>
+                        <DropShadowEffect ShadowDepth="0" Color="Black" BlurRadius="3"/>
+                    </Label.Effect>
+                </Label>
+            </Grid>
+        </Grid>
+    </Border>
+
+</UserControl>

@@ -1,0 +1,415 @@
+﻿<Window
+    x:Class="Harry.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Harry.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Harry"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:tb="http://www.hardcodet.net/taskbar"
+    xmlns:hc="https://handyorg.github.io/handycontrol"
+    Style="{StaticResource TransparentWindow}"
+    SizeToContent="WidthAndHeight"
+    mc:Ignorable="d">
+
+    <Window.Resources>
+        <Geometry x:Key="Speaker">
+            M13.0355 8.5211C13.4261 8.1306 14.0674 8.1267 14.3881 8.5764 15.0882 9.5579 15.5 10.7592 15.5 12.0567 15.5 13.3541 15.0882 14.5554 14.3881 15.537 14.0674 15.9866 13.4261 15.9827 13.0355 15.5922 12.645 15.2017 12.6586 14.5725 12.9408 14.0978 13.296 13.5002 13.5 12.8023 13.5 12.0567 13.5 11.3111 13.296 10.6131 12.9408 10.0156 12.6586 9.5408 12.645 8.9116 13.0355 8.5211M15.864 5.6932C16.2545 5.3026 16.8921 5.2998 17.2419 5.7271 18.6532 7.4512 19.5 9.6553 19.5 12.0571 19.5 14.459 18.6532 16.6631 17.2419 18.3871 16.8921 18.8145 16.2545 18.8116 15.864 18.4211 15.4734 18.0306 15.4792 17.4007 15.8183 16.9648 16.8723 15.6098 17.5 13.9068 17.5 12.0571 17.5 10.2075 16.8723 8.5045 15.8183 7.1494 15.4792 6.7135 15.4734 6.0837 15.864 5.6932M11 16.5858V7.4142C11 6.5233 9.9229 6.0771 9.2929 6.7071L7.2929 8.7071C7.1054 8.8946 6.851 9 6.5858 9H5C4.4477 9 4 9.4477 4 10V14C4 14.5523 4.4477 15 5 15H6.5858C6.851 15 7.1054 15.1054 7.2929 15.2929L9.2929 17.2929C9.9229 17.9229 11 17.4767 11 16.5858Z
+        </Geometry>
+        <Geometry x:Key="Pin">
+            M 12.956 18.956 L 9 15 l -3.956 -3.956 a 1 1 0 0 1 0.314 -1.626 l 5.261 -2.255 a 1 1 0 0 0 0.535 -0.548 l 1.283 -3.207 a 1 1 0 0 1 1.635 -0.336 l 6.856 6.856 a 1 1 0 0 1 -0.336 1.635 l -3.207 1.283 a 1 1 0 0 0 -0.548 0.535 l -2.255 5.261 a 1 1 0 0 1 -1.626 0.314 M 8 14 L 5 18 Q 3 21 6 19 L 10 16
+        </Geometry>
+
+        <CollectionViewSource x:Key="ModulesViewSource" Source="{Binding DisplayModules}"/>
+    </Window.Resources>
+
+
+    <Grid x:Name="Main" MinWidth="300" MinHeight="445">
+        <Grid.Height>
+            <MultiBinding ConverterParameter="x + y + 56" Converter="{StaticResource Math}">
+                <Binding ElementName="TopBlock" Path="ActualHeight"/>
+                <Binding ElementName="ModuleSettingsBorder" Path="ActualHeight"/>
+            </MultiBinding>
+        </Grid.Height>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition Width="38" />
+        </Grid.ColumnDefinitions>
+        <!--  RIGHT PANEL  -->
+        <StackPanel Grid.Column="1" Orientation="Horizontal">
+            <Line Stroke="{StaticResource DividorColor}" StrokeThickness="2" Y1="0" Y2="{Binding ActualHeight, ElementName=Main}"/>
+            <Border Width="40" CornerRadius="0,12,12,0"
+                    Background="{StaticResource LightBackColor}">
+                <StackPanel x:Name="RightControls"
+                    Margin="0,24,0,24" Orientation="Vertical">
+                    <StackPanel.Resources>
+                        <Style TargetType="controls:WindowControlButton">
+                            <Setter Property="FillColor" Value="{StaticResource InactiveColor}"/>
+                            <Setter Property="GlowColor" Value="{StaticResource FancyColor}"/>
+                            <Setter Property="Height" Value="32"/>
+                            <Setter Property="Width" Value="30"/>
+                            <Setter Property="Margin" Value="-6,0,0,0"/>
+                            <Setter Property="Scale" Value="0.6"/>
+                            <Setter Property="MaxScale" Value="0.65"/>
+                        </Style>
+                    </StackPanel.Resources>
+
+                    <controls:WindowControlButton Click="ExitButtonClick" 
+                                                  PathData="{StaticResource CloseIcon}" GlowColor="#d93732"/>
+                    <controls:WindowControlButton Click="TrayButtonClick" 
+                                                  PathData="{StaticResource HideIcon}"/>
+                    <controls:WindowControlButton x:Name="Pin" Click="PinClick"
+                                                  PathData="{StaticResource Pin}"/>
+                    <controls:WindowControlButton x:Name="Overlay" Click="OverlayClick"
+                                                  PathData="{StaticResource Overlay}"/>
+                    <controls:WindowControlButton x:Name="OpenLogs" Click="LogButtonClick"
+                                                  PathData="{StaticResource LogIcon}"/>
+                    <controls:WindowControlButton Click="ServiceWindowButtonClick"
+                                                  PathData="{StaticResource SettingsIcon}"/>
+                    <controls:WindowControlButton Click="AhkClick" 
+                                                  PathData="{StaticResource AhkIcon}"/>
+                    <controls:WindowControlButton Click="SoundButtonClick"
+                                                  PathData="{StaticResource Speaker}" />
+
+
+                    <Slider x:Name="VolumeSlider" Visibility="Hidden"
+                            Style="{StaticResource Slider}" 
+                            Orientation="Vertical"
+                            Value="0" Maximum="100" TickFrequency="1"
+                            Width="20"
+                            Height="96"
+                            Margin="-6,5,0,0"
+                            MouseWheel="Slider_MouseWheel"
+                            ValueChanged="VolumeSlider_ValueChanged"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
+        <!--  MAIN CONTENT  -->
+        <Grid x:Name="MainContent" Grid.Column="0">
+            
+            <!-- TOP BLOCK -->
+            <Grid x:Name="TopBlock"
+                VerticalAlignment="Top" Margin="20,0">
+                <Border Background="{StaticResource LightBackColor}" CornerRadius="0,0,12,12"
+                        MinHeight="120">
+                    <StackPanel Margin="0,0,0,12">
+                        
+                        <!-- TIMER -->
+                        <Grid HorizontalAlignment="Center">
+                            <Label x:Name="CurrentTime"
+                                   VerticalAlignment="Top" 
+                                   Height="60" Width="180"
+                                   Margin="0,-4,0,-8"
+                                   HorizontalAlignment="Center"
+                                   HorizontalContentAlignment="Left"
+                                   Content="00:00:00"
+                                   FontFamily="{StaticResource BigTextFont}" FontSize="44"
+                                   Foreground="{StaticResource AccentColor}"/>
+                        </Grid>
+
+                        <!-- CURRENTLY ENABLED -->
+                        <ItemsControl x:Name="EnabledModules" ItemsSource="{Binding Source={StaticResource ModulesViewSource}}">
+                            <ItemsControl.Resources>
+                                <Style TargetType="controls:EnabledModuleTimer">
+                                    <Setter Property="Margin" Value="6,0,6,4"/>
+                                    <Setter Property="Foreground" Value="{StaticResource TitleColor}"/>
+                                    <Setter Property="Scale" Value="0.75"/>
+                                </Style>
+                            </ItemsControl.Resources>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel HorizontalAlignment="Center" 
+                                           Margin="12,2,12,-4"
+                                           Width="200"/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+
+                        <!-- SPEED -->
+                        <controls:ConnectionInfoPanel x:Name="Speed" Margin="12,8,12,-2" HorizontalAlignment="Center"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+
+
+            <!-- SETTINGS BLOCK -->
+            <Border x:Name="ModuleSettingsBorder"
+                        Background="{StaticResource LightBackColor}"
+                        MinHeight="100" CornerRadius="12"
+                        VerticalAlignment="Bottom" Margin="20,0,20,20">
+                <StackPanel x:Name="ModuleSettingsPanel" Margin="10,4,10,0">
+
+                    <!-- MODULE HEADER -->
+                    <StackPanel Orientation="Horizontal" VerticalAlignment="Top">
+                        <controls:WindowControlButton x:Name="SelectedModuleButton"
+                                Width="30" Height="30" Margin="4,4,4,0"
+                                VerticalAlignment="Center"
+                                Click="ModuleSelectionClick"
+                                PathData="{StaticResource ArcIcon}"
+                                FillColor="{StaticResource InactiveColor}" GlowColor="{StaticResource TitleColor}"
+                                MaxScale="1.05" Scale="1.0" />
+
+                        <Label x:Name="SelectedModuleLabel" Content="PVE Multishot"
+                               Height="40" Margin="-5,-2,0,0"
+                               HorizontalContentAlignment="Left"
+                               VerticalContentAlignment="Center"
+                               FontFamily="{StaticResource TitleFont}" FontSize="26" 
+                               Foreground="{StaticResource AccentColor}"/>
+                    </StackPanel>
+
+                    <Line X1="40" X2="{Binding ActualWidth, ElementName=SelectedModuleLabel, Converter={StaticResource Math}, ConverterParameter=x+28}" 
+                          Opacity="0.5" Stroke="{StaticResource InactiveColor}" StrokeThickness="2" Margin="0,-3,0,6"/>
+
+                    <StackPanel x:Name="DescriptionPanel" Margin="6,0" Visibility="Collapsed">
+                        <Viewbox StretchDirection="UpOnly" Stretch="UniformToFill" MaxWidth="190">
+                            <TextBlock x:Name="Description" FontSize="11" TextWrapping="Wrap" HorizontalAlignment="Center" 
+                                       MinWidth="175" MaxWidth="195"
+                                       Foreground="{StaticResource TitleColor}" FontFamily="{StaticResource SmallTitleFont}"/>
+                        </Viewbox>
+                        <Separator Background="{StaticResource InactiveColor}" Opacity="0.5" Margin="5,4"/>
+                    </StackPanel>
+                    
+                    <!-- SETTINGS -->
+                    <Grid MinHeight="64">
+                        <StackPanel Orientation="Vertical" Margin="10,0,10,10" VerticalAlignment="Center">
+                            <StackPanel.Resources>
+                                <Style TargetType="Label">
+                                    <Setter Property="Foreground" Value="{StaticResource TitleColor}"/>
+                                    <Setter Property="Opacity" Value="0.9"/>
+                                    <Setter Property="FontFamily" Value="{StaticResource Kantumruy}"/>
+                                    <Setter Property="FontSize" Value="15"/>
+                                    <Setter Property="Margin" Value="-6,-6"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                </Style>
+                                <Style TargetType="controls:Checkbox">
+                                    <Setter Property="Width" Value="20"/>
+                                    <Setter Property="Height" Value="20"/>
+                                    <Setter Property="Margin" Value="0,2"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                                </Style>
+                                <Style TargetType="Grid">
+                                    <Setter Property="MinHeight" Value="20"/>
+                                </Style>
+                                <Style TargetType="controls:Button">
+                                    <Setter Property="Background" Value="{StaticResource InactiveColor}"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="MaxWidth" Value="115"/>
+                                    <Setter Property="CornerRadius" Value="7"/>
+                                    <Setter Property="HorizontalAlignment" Value="Right"/>
+                                    <Setter Property="VerticalAlignment" Value="Center"/>
+                                    <Setter Property="Height" Value="22"/>
+                                </Style>
+                            </StackPanel.Resources>
+
+                            <!--ENABLED-->
+                            <Grid x:Name="ModuleCheckboxGrid">
+                                <Label Content="Enabled" HorizontalAlignment="Left"/>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                    <controls:WindowControlButton Scale="1.0" MaxScale="1.0" Height="16" Width="16" Margin="6,0"
+                                        PathData="{StaticResource QuestionMark}"
+                                        FillColor="{StaticResource InactiveColor}" GlowColor="{StaticResource AccentColor}"
+                                        Click="Description_Click"/>
+                                    <controls:Checkbox x:Name="ModuleCheckbox" Click="CurrentModuleToggle"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <!--API SETTINGS-->
+                            <StackPanel x:Name="API_Panel" Visibility="Collapsed">
+                                <Grid ToolTip="Error code prevention">
+                                    <Label Content="Auto disable" HorizontalAlignment="Left"/>
+                                    <controls:Checkbox x:Name="API_Disable" Click="API_DisableClick"/>
+                                </Grid>
+
+                                <Grid ToolTip="Injects back dropped packets">
+                                    <Label Content="Buffering" HorizontalAlignment="Left"/>
+                                    <controls:Checkbox x:Name="API_Buffer" Click="API_BufferClick"/>
+                                </Grid>
+                            </StackPanel>
+
+                            <!--MULTISHOT SETTINGS-->
+                            <StackPanel x:Name="MULTISHOT_Panel" Visibility="Visible">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition Width="2*"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid Grid.Column="0" ToolTip="Blocks updates sent by server&#x0a;Better for efficiency">
+                                        <Label Content="DL" HorizontalAlignment="Left"/>
+                                        <controls:Checkbox x:Name="MS_INBOUND" Click="MS_InboundClick"/>
+                                    </Grid>
+
+                                    <Grid Grid.Column="2" ToolTip="Blocks updates sent to server&#x0a;Injects shots as single big shot on deactivation&#x0a;Limited multiplying efficiency&#x0a;Works good on lower timelimit values">
+                                        <Label Content="UL" HorizontalAlignment="Left"/>
+                                        <controls:Checkbox x:Name="MS_OUTBOUND" Click="MS_OutboundClick"/>
+                                    </Grid>
+                                </Grid>
+
+                                <StackPanel ToolTip="Speed over multiplying efficiency preference">
+                                    <Grid>
+                                        <Label Content="Time limit" HorizontalAlignment="Left"/>
+                                        <Label x:Name="MS_MaxTime" Content="0.0sec" HorizontalAlignment="Right"/>
+                                    </Grid>
+                                    
+                                    <Slider x:Name="MS_MaxTimeSlider" Style="{StaticResource Slider}" Margin="0,2"
+                                            Minimum="0.5" Maximum="1.8" TickFrequency="0.05"
+                                            MouseWheel="Slider_MouseWheel" ValueChanged="MS_MaxTimeSlider_ValueChanged"/>
+                                </StackPanel>
+
+                                <Grid ToolTip="Activate on shot packet instead of LMB&#x0a;Good for fusion rifles&#x0a;Can be inconsistent&#x0a;Doesn't work alone">
+                                    <Label Content="Shot detection" HorizontalAlignment="Left"/>
+                                    <controls:Checkbox x:Name="MS_DETECT" Click="MS_DetectClick"/>
+                                </Grid>
+                                
+                                <Grid ToolTip="Make it work passively">
+                                    <Label Content="Togglable" HorizontalAlignment="Left"/>
+                                    <controls:Checkbox x:Name="MS_TOGGLABLE" Click="MS_TogglableClick"/>
+                                </Grid>
+
+                                <Grid ToolTip="Multiply shots sent to players&#x0a;Works on pve port if disabled&#x0a;Keybind purely toggles the setting" Margin="0,0,0,2">
+                                    <Label Content="Players" HorizontalAlignment="Left"/>
+                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                        <controls:Button x:Name="MS_PVPKeybind" Text="No keybind" Click="KeybindButtonClick"/>
+                                        <controls:Checkbox x:Name="MS_PVP" Click="MS_PlayersClick" Margin="6,0,0,0"/>
+                                    </StackPanel>
+                                </Grid>
+
+                            </StackPanel>
+
+                            <!--PVE SETTINGS-->
+                            <StackPanel x:Name="INSTANCE_Panel" Visibility="Collapsed">
+                                <Grid Margin="0,0,0,3" ToolTip="Injects back dropped packets">
+                                    <Label Content="Buffering" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                    <controls:Checkbox x:Name="InstBufferCB" Click="InstBufferCBClick" Margin="6,0,0,0"/>
+                                </Grid>
+                            </StackPanel>
+
+                            <!--ACTIVATION-->
+                            <Grid x:Name="ActivationGrid">
+                                <Label x:Name="kbd" Content="Keybind" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+
+                                <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                    <controls:Button x:Name="KeybindButton" Text="No keybind" MaxWidth="100" Click="KeybindButtonClick"/>
+                                    <controls:Checkbox x:Name="PveInCB" Visibility="Collapsed" Click="PveInCBClick" Margin="6,0,0,0"/>
+                                    <controls:Checkbox x:Name="PvpInCB" Visibility="Collapsed" Click="PvpInCBClick" Margin="6,0,0,0"/>
+                                </StackPanel>
+                            </Grid>
+                            
+                            <!--PVP SETTINGS-->
+                            <StackPanel x:Name="PVP_Panel" Visibility="Collapsed">
+                                <Grid ToolTip="Block info sent to players" Margin="0,3,0,0">
+                                    <Label Content="UL" HorizontalAlignment="Left"/>
+
+                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                        <controls:Button x:Name="PvpOutbound" Text="No keybind" Click="KeybindButtonClick"/>
+                                        <controls:Checkbox x:Name="PvpOutCB" Click="PvpOutCBClick" Margin="6,0,0,0"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid Margin="0,3,0,3" ToolTip="Allows to reinitiate connection with players on desync&#x0a;Experimental and not error-code proof">
+                                    <Label Content="Auto-resync" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                    <controls:Checkbox x:Name="PvpResyncCB" Click="PvpResyncCBClick" Margin="6,0,0,0"/>
+                                </Grid>
+                                
+                                <Grid ToolTip="Injects back dropped packets">
+                                    <Label Content="Buffering" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                    <controls:Checkbox x:Name="PvpBufferCB" Click="PvpBufferCBClick" Margin="6,0,0,0"/>
+                                </Grid>
+                            </StackPanel>
+
+                            <!--PVE SETTINGS-->
+                            <StackPanel x:Name="PVE_Panel" Visibility="Collapsed">
+                                
+                                <Grid ToolTip="Block info sent to server" Margin="0,3,0,3">
+                                    <Label Content="UL" HorizontalAlignment="Left"/>
+
+                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                        <controls:Button x:Name="PveOutbound" Text="No keybind" Click="KeybindButtonClick"/>
+                                        <controls:Checkbox x:Name="PveOutCB" Click="PveOutCBClick" Margin="6,0,0,0"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid ToolTip="Slow down world updates sent from server by x20&#x0a;Keeps you out of resync for longer periods" Margin="0,0,0,3">
+                                    <Label Content="DL Slow" HorizontalAlignment="Left"/>
+
+                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                        <controls:Button x:Name="PveSlowInbound" Text="No keybind" Click="KeybindButtonClick"/>
+                                        <controls:Checkbox x:Name="PveSlowInCB" Click="PveSlowInCBClick" Margin="6,0,0,0"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid ToolTip="Slow down world updates sent to server by x20&#x0a;Experimental, not tested" Margin="0,0,0,3">
+                                    <Label Content="UL Slow" HorizontalAlignment="Left"/>
+
+                                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                                        <controls:Button x:Name="PveSlowOutbound" Text="No keybind" Click="KeybindButtonClick"/>
+                                        <controls:Checkbox x:Name="PveSlowOutCB" Click="PveSlowOutCBClick" Margin="6,0,0,0"/>
+                                    </StackPanel>
+                                </Grid>
+
+                                <Grid Margin="0,0,0,3" ToolTip="Allows to reinitiate connection with the server on desync&#x0a;Prevents most error-code cases">
+                                    <Label Content="Auto-resync" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                    <controls:Checkbox x:Name="PveResyncCB" Click="PveResyncCBClick" Margin="6,0,0,0"/>
+                                </Grid>
+
+                                <Grid Margin="0,0,0,3" ToolTip="Injects back dropped packets">
+                                    <Label Content="Buffering" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                    <controls:Checkbox x:Name="PveBufferCB" Click="PveBufferCBClick" Margin="6,0,0,0"/>
+                                </Grid>
+                            </StackPanel>
+
+                        </StackPanel>
+                    </Grid>
+                    
+                </StackPanel>
+            </Border>
+
+            <!--  MODULE SELECTION PAGE  -->
+            <Grid x:Name="ModuleSelection"
+                VerticalAlignment="Top" HorizontalAlignment="Center"
+                MinWidth="232"
+                Margin="16"
+                Opacity="0"
+                Visibility="Hidden">
+                <Grid.Resources>
+                    <Style TargetType="controls:WindowControlButton">
+                        <Setter Property="Scale" Value="0.6" />
+                        <Setter Property="MaxScale" Value="0.65" />
+                        <Setter Property="Width" Value="56" />
+                        <Setter Property="Height" Value="56" />
+                    </Style>
+                </Grid.Resources>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="56" />
+                    <ColumnDefinition Width="56" />
+                    <ColumnDefinition Width="56" />
+                    <ColumnDefinition Width="56" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="56" />
+                    <RowDefinition Height="56" />
+                    <RowDefinition Height="56" />
+                    <RowDefinition Height="56" />
+                    <RowDefinition Height="56" />
+                    <RowDefinition Height="56" />
+                    <RowDefinition Height="56" />
+                    <RowDefinition Height="56" />
+                </Grid.RowDefinitions>
+            </Grid>
+        </Grid>
+
+        <!--  TASK BAR ICON  -->
+        <tb:TaskbarIcon
+            x:Name="tbIcon"
+            IconSource="Assets/appLogo.ico"
+            Visibility="Hidden"/>
+    </Grid>
+</Window>
+

@@ -1,0 +1,62 @@
+﻿<Window
+    x:Class="Harry.AhkManagerWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="clr-namespace:Harry.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Harry"
+    xmlns:s="clr-namespace:System;assembly=mscorlib"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Ahk Manager"
+    Width="310"
+    Height="420"
+    Style="{StaticResource TransparentWindow}"
+    mc:Ignorable="d">
+
+    <Grid>
+        <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Orientation="Horizontal" FlowDirection="LeftToRight" Margin="3,7">
+            <StackPanel.Resources>
+                <Style TargetType="controls:WindowControlButton">
+                    <Setter Property="Width" Value="36"/>
+                    <Setter Property="Height" Value="36"/>
+                    <Setter Property="FillColor" Value="{StaticResource InactiveColor}"/>
+                    <Setter Property="Scale" Value="0.6"/>
+                    <Setter Property="MaxScale" Value="0.65"/>
+                </Style>
+            </StackPanel.Resources>
+
+            <controls:WindowControlButton PathData="{StaticResource AhkIcon}" GlowColor="{StaticResource FancyColor}" Click="OpenFolder_Click"/>
+            <controls:WindowControlButton PathData="{StaticResource RefreshIcon}" GlowColor="{StaticResource FancyColor}" Click="RefreshButton_Click"/>
+            <controls:WindowControlButton PathData="{StaticResource CloseIcon}" GlowColor="#d93732" Click="ExitButton_Click"/>
+            
+        </StackPanel>
+
+        <Label Content="Ahk Manager" Foreground="{StaticResource AccentColor}" FontSize="21" FontFamily="{StaticResource BigTextFont}" Margin="10,3.5" IsHitTestVisible="False"/>
+
+        <Border CornerRadius="0,0,10,10" Background="{StaticResource LightBackColor}" Margin="15,45,15,15"
+                BorderThickness="1" BorderBrush="{StaticResource DividorColor}">
+            <ScrollViewer x:Name="Scroll" CanContentScroll="True" Margin="6">
+                <StackPanel x:Name="Listing" Width="Auto" Orientation="Vertical">
+
+                    <StackPanel.Resources>
+                        <Style TargetType="controls:Checkbox">
+                            <Setter Property="Width" Value="30"/>
+                            <Setter Property="Height" Value="30"/>
+                        </Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Orientation" Value="Horizontal"/>
+                            <Setter Property="Margin" Value="0,0,0,5"/>
+                        </Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Margin" Value="7,0"/>
+                            <Setter Property="Foreground" Value="{StaticResource AccentColor}"/>
+                            <Setter Property="FontFamily" Value="{StaticResource TitleFont}"/>
+                            <Setter Property="FontSize" Value="23"/>
+                        </Style>
+                    </StackPanel.Resources>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+    </Grid>
+</Window>
+

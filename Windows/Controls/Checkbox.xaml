@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="Harry.Controls.Checkbox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Harry.Controls"
+             xmlns:c="clr-namespace:Harry.Windows.Converters"
+             mc:Ignorable="d" 
+             d:DesignHeight="25" d:DesignWidth="25">
+    <Grid>
+        <Border x:Name="ButtonBorder" 
+            MouseEnter="Border_MouseEnter" MouseLeave="Border_MouseLeave" MouseDown="Border_MouseDown" 
+            CornerRadius="{Binding ActualHeight, ConverterParameter=x/4, Converter={StaticResource Math}}" 
+            Background="{StaticResource LightBackColor}"
+            BorderBrush="{StaticResource AccentColor}" BorderThickness="2"
+            Opacity="0.7"/>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="0.65*"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="0.65*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="0.65*"/>
+                <RowDefinition/>
+                <RowDefinition Height="0.65*"/>
+            </Grid.RowDefinitions>
+            <Path x:Name="Icon"
+                  Grid.Column="1" Grid.Row="1"
+                  Fill="{StaticResource AccentColor}" Stretch="UniformToFill"
+                  Width="{Binding ActualWidth, ElementName=ButtonBorder, ConverterParameter=x/2.3, Converter={StaticResource Math}}" 
+                  Height="{Binding ActualHeight, ElementName=ButtonBorder, ConverterParameter=x/2.3, Converter={StaticResource Math}}" 
+                  IsHitTestVisible="False"/>
+        </Grid>
+    </Grid>
+    
+</UserControl>
