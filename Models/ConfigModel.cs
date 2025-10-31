@@ -25,13 +25,13 @@ namespace Harry.Models
         public string? Tracker_BungieName { get; set; } = null;
         public bool Tracker_CountRaids { get; set; } = true;
         public bool Tracker_CountDungeons { get; set; } = true;
-        public bool AltTabSupressKeybinds { get; set; } = false;
+        public bool AltTabSupressKeybinds { get; set; } = true;
 
         public bool Overlay_StartOnLaunch { get; set; } = true;
         public bool Overlay_ShowTime { get; set; } = false;
         public bool Overlay_ShowTimer { get; set; } = true;
         public bool Overlay_DisableOnInactivity { get; set; } = true;
-        public bool Overlay_DisplayOnlyTogglable { get; set; } = true;
+        public bool Overlay_DisplayOnlyTogglable { get; set; } = false;
         public int Overlay_LeftOffset { get; set; } = 0;
         public int Overlay_BottomOffset { get; set; } = 0;
 
@@ -40,10 +40,10 @@ namespace Harry.Models
         public int Window_TimerDecaySeconds { get; set; } = 10;
 
         public bool DB_SavePackets { get; set; } = true;
-        public bool DB_KeyPresses { get; set; } = true;
+        public bool DB_KeyPresses { get; set; } = false;
 
         public bool AHK_AutoClose { get; set; } = true;
-        public bool AHK_AutoOpen { get; set; } = true;
+        public bool AHK_AutoOpen { get; set; } = false;
     }
 
     public class ModuleSettingsBase
