@@ -22,7 +22,7 @@
             <FontFamily x:Key="SmallTitleFont">Bahnschrift Light</FontFamily>
             <FontFamily x:Key="BigTextFont">Microsoft JhengHei UI Light</FontFamily>
 
-            <!--Color palette-->
+            <!--main colors-->
             <Color x:Key="Accent">#d5d4d8</Color>
             <SolidColorBrush x:Key="TitleColor" Color="#FFFFFFFF"/>
             <SolidColorBrush x:Key="AccentColor" Color="#d5d4d8"/>
@@ -55,7 +55,6 @@
                     </Setter.Value>
                 </Setter>
             </Style>
-
         </ResourceDictionary>
     </Application.Resources>
 </Application>

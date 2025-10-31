@@ -21,7 +21,6 @@ namespace Harry.Interception.Modules
         static int[] PVE_Service = new int[] { 36, 42, 43, 51, 57, 64, 128, 136, 233 };
         const int PVE_ReconnectRequestLength = 1166;
 
-
         public static bool IsNewPlayerConnection(this IEnumerable<Packet> packets)
         {
             if (packets.Count() < 5)
@@ -64,6 +63,7 @@ namespace Harry.Interception.Modules
             }
             return null;
         }
+
         public static uint GetPveId(this DbPacket packet)
         {
             try
@@ -138,6 +138,7 @@ namespace Harry.Interception.Modules
                 IsSaved = false,
             };
         }
+
         public static unsafe Packet Clone(this Packet p)
         {
             var addr = p.Addr.Clone();
@@ -150,6 +151,7 @@ namespace Harry.Interception.Modules
                 IsSaved = false
             };
         }
+
         public static Packet ClearTcpFlags(this Packet p)
         {
             unsafe
@@ -164,7 +166,6 @@ namespace Harry.Interception.Modules
             }
             return p;
         }
-
 
         public static string BuildTcpFlagsString(this Packet p)
         {

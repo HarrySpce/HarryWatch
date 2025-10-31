@@ -26,6 +26,7 @@ namespace Harry.Utility
             }
             return msEncrypt.ToArray();
         }
+
         public string Decrypt(byte[] bytes)
         {
             using var aesAlg = Aes.Create();
@@ -35,6 +36,7 @@ namespace Harry.Utility
             using var srDecrypt = new StreamReader(csDecrypt);
             return srDecrypt.ReadToEnd();
         }
+
         public byte[] GetHash(string inputString)
         {
             using var algorithm = SHA256.Create();

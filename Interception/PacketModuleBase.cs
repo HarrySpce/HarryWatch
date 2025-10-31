@@ -27,7 +27,6 @@ namespace Harry.Interception.Modules
         public Geometry Icon { get; set; }
         public SolidColorBrush Color { get; set; }
 
-
         public bool IsEnabled { get; set; } = false;
         public bool IsActivated { get; set; }
 
@@ -90,8 +89,6 @@ namespace Harry.Interception.Modules
             if (providers is not null && providers.Length > 0)
                 providers.ToList().ForEach(provider => PacketProviders.Add(provider));
         }
-
-
 
         protected bool hooked = false;
         public void HookKeybind()
@@ -158,6 +155,7 @@ namespace Harry.Interception.Modules
 
             return true;
         }
+
         private void KeybindPressedHandler(LinkedList<Keycode> keycodes)
         {
             if (!KeybindChecks()) return;

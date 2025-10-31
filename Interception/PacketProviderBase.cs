@@ -35,8 +35,6 @@ namespace Harry.Interception
 
         protected abstract WinDivert CreateInstance();
 
-        
-
         public PacketProviderBase(string name, int fromPort, int toPort, bool isTcp = false)
         {
             Name = name;
@@ -50,9 +48,6 @@ namespace Harry.Interception
 
         private HashSet<PacketModuleBase> subs = new HashSet<PacketModuleBase>();
         private CancellationTokenSource cts;
-
-        
-
 
         public async Task SendPacket(Packet packet, bool force = false)
         {
@@ -68,10 +63,12 @@ namespace Harry.Interception
             packet.IsSent = true;
             packet.IsSaved = packet.Delayed = false;
         }
+
         public virtual bool AllowPacket(Packet p)
         {
             return !subs.Any(x => !x.AllowPacket(p));
         }
+
         public virtual void StorePacket(Packet p)
         {
             CurrentQueue.Add(p);
@@ -181,6 +178,7 @@ namespace Harry.Interception
             addr.Dispose();
             Logger.Debug($"{Name} provider: Stopped");
         }
+
         private async Task SavePoll(CancellationToken ct)
         {
             while (CurrentQueue is null || Connections is null)
@@ -252,6 +250,7 @@ namespace Harry.Interception
 
             Logger.Debug($"{Name} provider: Stopped saving packets");
         }
+
         private async Task DelayPoll(CancellationToken ct)
         {
             Delay = new List<Packet>();
@@ -366,6 +365,7 @@ namespace Harry.Interception
 
             Delay.Add(clone);
         }
+
         public async Task ClearDelayQueue(string addr = null, bool sendSaved = false, int delay = 25)
         {
             var copy = Delay.ToList();
@@ -405,7 +405,6 @@ namespace Harry.Interception
             }
         }
 
-
         public void Subscribe(PacketModuleBase module)
         {
             if (subs.Contains(module))
@@ -420,6 +419,7 @@ namespace Harry.Interception
                 Task.Run(() => DelayPoll(cts.Token));
             }
         }
+
         public void Unsubscribe(PacketModuleBase module)
         {
             if (!subs.Contains(module))

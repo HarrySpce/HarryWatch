@@ -32,11 +32,11 @@ namespace Harry
                     : System.Text.Json.Serialization.JsonIgnoreCondition.WhenWritingNull
             });
         }
+
         public static T Deserialize<T>(this string obj)
         {
             return JsonSerializer.Deserialize<T>(obj, new JsonSerializerOptions() { IncludeFields = true });
         }
-
 
         private static TimeSpan animationTime = TimeSpan.FromSeconds(0.5);
         private static List<UIElement> inAppear = new List<UIElement>();
@@ -81,6 +81,7 @@ namespace Harry
 
             return;
         }
+
         public static void ElementAppear(this UIElement e, TimeSpan timeOverride = default, bool shrink = true, bool checkOverride = false)
         {
             if (e.Visibility == Visibility.Visible) return;
@@ -138,6 +139,7 @@ namespace Harry
             };
             e.BeginAnimation(UIElement.OpacityProperty, disappear);
         }
+
         public static void ElementFadeIn(this UIElement e, TimeSpan timeOverride = default, bool checkOverride = false)
         {
             if (e.Visibility == Visibility.Visible && e.Opacity != 0) return;
@@ -156,7 +158,6 @@ namespace Harry
             appear.Completed += (s, a) => inAppear.Remove(e);
             e.BeginAnimation(UIElement.OpacityProperty, appear);
         }
-
 
         public static string[] SplitLinesOnLimit(this string input, int limit = 2048)
         {
@@ -181,6 +182,7 @@ namespace Harry
 
             return result.ToArray();
         }
+
         public static string BytesLenghtToString(this int len)
         {
             if (len >= 1048576 / 2) // 0.5 MB
@@ -197,7 +199,6 @@ namespace Harry
             }
         }
 
-
         public static string ToHexString(this byte[] bytes)
         {
             return string.Join("", bytes.Select(x => x.ToString("x2")));
@@ -209,7 +210,6 @@ namespace Harry
                                  .Select(x => Convert.ToByte(bytes.Substring(x, 2), 16))
                                  .ToArray();
         }
-
 
         public static string ResilientDownloadString(this WebClient wc, string url)
         {
@@ -229,8 +229,6 @@ namespace Harry
             }
             return String.Empty;
         }
-
-
 
         static public Color ColorFromHSL(float h, float s, float v)
         {

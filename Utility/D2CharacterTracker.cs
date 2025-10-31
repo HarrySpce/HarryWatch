@@ -57,6 +57,7 @@ namespace Harry.Utility
 
             return await TrySetUser(m.Groups[1].Value, short.Parse(m.Groups[2].Value));
         }
+
         public static async Task<bool> TrySetUser(string name, short delimeter)
         {
             var playerResult = await client.ApiAccess.Destiny2.SearchDestinyPlayerByBungieName(BungieMembershipType.All, new DotNetBungieAPI.Models.Requests.ExactSearchRequest() { DisplayName = name, DisplayNameCode = delimeter });

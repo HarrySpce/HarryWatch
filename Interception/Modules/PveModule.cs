@@ -55,7 +55,6 @@ gos motes!";
             IsActivated = false;
             base.StopListening();
         }
-
         
         // HANDLERS
         private void OutboundHandler(LinkedList<Keycode> keycodes)
@@ -69,6 +68,7 @@ gos motes!";
                 ToggleSwitch(ref Outbound);
             }
         }
+
         private void SlowInboundHandler(LinkedList<Keycode> keycodes)
         {
             if (!KeybindChecks()) return;
@@ -80,6 +80,7 @@ gos motes!";
                 ToggleSwitch(ref SlowInbound);
             }
         }
+
         private void SlowOutboundHandler(LinkedList<Keycode> keycodes)
         {
             if (!KeybindChecks()) return;
@@ -91,8 +92,6 @@ gos motes!";
                 ToggleSwitch(ref SlowOutbound);
             }
         }
-
-
 
         // SWITCHES
         public static bool Inbound = false;

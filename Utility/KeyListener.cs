@@ -83,8 +83,6 @@ namespace Harry.Utility
 
         private static Channel<KeyEvent> _eventChannel = Channel.CreateUnbounded<KeyEvent>();
 
-
-
         delegate IntPtr LowLevelInputProc(int nCode, IntPtr wParam, IntPtr lParam);
         static IntPtr KeyboardCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
@@ -99,6 +97,7 @@ namespace Harry.Utility
 
             return CallNextHookEx(_kbHook, nCode, wParam, lParam);
         }
+
         static IntPtr MouseCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
             if (nCode < 0) return CallNextHookEx(_mouseHook, nCode, wParam, lParam);
@@ -148,8 +147,6 @@ namespace Harry.Utility
             return CallNextHookEx(_mouseHook, nCode, wParam, lParam);
         }
 
-
-
         private static CancellationTokenSource _cts = new CancellationTokenSource();
         private void StartEventProcessor()
         {
@@ -195,7 +192,6 @@ namespace Harry.Utility
             Dispose();
         }
 
-
         static IntPtr _kbHook = IntPtr.Zero;
         static IntPtr _mouseHook = IntPtr.Zero;
         static LowLevelInputProc _kbCallback;
@@ -233,6 +229,7 @@ namespace Harry.Utility
                 StartEventProcessor();
             }
         }
+
         void Unhook()
         {
             if (_kbCallback is not null && _mouseCallback is not null)

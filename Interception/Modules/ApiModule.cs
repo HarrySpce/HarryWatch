@@ -24,7 +24,7 @@ namespace Harry.Interception.Modules
             Description = 
 @"blocks api updates [7.5k]
 infinite rally
-lobby crash
+lobby crash (patched???)
 predamage";
 
             Disable = Config.GetNamed(Name).GetSettings<bool>("SelfDisable");

@@ -68,7 +68,6 @@ pull yourself to ft leader";
             var out_example = con.LastOrDefault(x => !x.Inbound && x.Length != 0);
             var in_example = con.LastOrDefault(x => x.Inbound && x.Length != 0);
 
-            // TODO: just build a packet lol
             if (out_example is null || in_example is null)
             {
                 Logger.Warning($"{Name}: Can't kill {addr}");

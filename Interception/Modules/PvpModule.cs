@@ -87,7 +87,6 @@ prevent fireteam joining";
                     IsActivated = false;
                     StartTime = DateTime.Now;
                 }
-                 
 
                 var save = target;
                 MainWindow.Instance.Dispatcher.BeginInvoke(() =>
@@ -98,7 +97,6 @@ prevent fireteam joining";
                 });
             }
         }
-
 
         public static List<Keycode> OutboundKeybind = new List<Keycode>();
         private void OutboundHandler(LinkedList<Keycode> keycodes)
@@ -112,7 +110,6 @@ prevent fireteam joining";
                 ToggleSwitch(ref Outbound);
             }
         }
-
 
         Dictionary<string, DateTime> breatheConnections = new();
         void DisableBreathe(string key)
@@ -171,8 +168,6 @@ prevent fireteam joining";
 
                 return true;
             }
-
-
 
             var result = false;
             if (p.Outbound)

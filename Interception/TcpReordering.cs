@@ -148,8 +148,6 @@ namespace Harry.Interception
                 cache.Location[type].LastLength = (uint)p.Length;
             }
 
-
-
             if (!p.AckNum.HasValue || p.AckNum == 0) return;
 
             if (p.AckNum >= cache.Location[type].HighAck) // keep latest ack for spoofing
@@ -177,7 +175,6 @@ namespace Harry.Interception
 
             p.Recalc();
         }
-
         const uint reset = 20000;
     }
 }

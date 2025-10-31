@@ -40,7 +40,6 @@ pauses game process";
             }
         }
 
-
         private static void SuspendProcess(Process p)
         {
             foreach (ProcessThread pT in p.Threads)
@@ -76,7 +75,6 @@ pauses game process";
                 CloseHandle(pOpenThread);
             }
         }
-
 
         [Flags]
         public enum ThreadAccess : int

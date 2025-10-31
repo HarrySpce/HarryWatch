@@ -78,6 +78,7 @@ namespace Harry
                 }
             }
         }
+
         private void NewModuleClicked(object sender, RoutedEventArgs e)
         {
             var time = TimeSpan.FromSeconds(0.3);
@@ -91,8 +92,6 @@ namespace Harry
             ModuleSelection.ElementFadeOut(time);
         }
 
-
-
         private void Description_Click(object sender, RoutedEventArgs e)
         {
             if (DescriptionPanel.Visibility == Visibility.Visible)
@@ -104,6 +103,7 @@ namespace Harry
                 DescriptionPanel.ElementAppear();
             }
         }
+
         private void LogButtonClick(object sender, RoutedEventArgs e)
         {
             Thread thread = new Thread(() =>
@@ -118,11 +118,13 @@ namespace Harry
             thread.IsBackground = true;
             thread.Start();
         }
+
         private void ExitButtonClick(object sender, RoutedEventArgs e)
         {
             Process.GetCurrentProcess().CloseMainWindow();
             Application.Current.Shutdown();
         }
+
         private void TrayButtonClick(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -144,6 +146,7 @@ namespace Harry
             tbIcon.TrayMouseDoubleClick += TrayIconClick;
             tbIcon.TrayRightMouseDown += TrayIconRightClick;
         }
+
         private void TrayIconRightClick(object? sender, EventArgs e)
         {
             if (sender is TaskbarIcon icon)
@@ -151,6 +154,7 @@ namespace Harry
                 icon.ContextMenu.IsOpen = true;
             }
         }
+
         private void TrayIconClick(object? sender, EventArgs e)
         {
             this.WindowState = WindowState.Normal;
@@ -165,6 +169,7 @@ namespace Harry
                 icon.TrayMouseDoubleClick -= TrayIconClick;
             }
         }
+
         private void SoundButtonClick(object sender, RoutedEventArgs e)
         {
             if (VolumeSlider.Visibility == Visibility.Visible)
@@ -176,6 +181,7 @@ namespace Harry
                 VolumeSlider.ElementFadeIn();
             }
         }
+
         private void ServiceWindowButtonClick(object sender, RoutedEventArgs e)
         {
             var app = new ServiceWindow()
@@ -185,6 +191,7 @@ namespace Harry
             };
             app.Show();
         }
+
         private void AhkClick(object sender, RoutedEventArgs e)
         {
             var app = new AhkManagerWindow()
@@ -194,12 +201,15 @@ namespace Harry
             };
             app.Show();
         }
+
         private void PinClick(object sender, RoutedEventArgs e)
         {
             this.Topmost = !this.Topmost;
             Pin.FillColor = Topmost ? Pin.GlowColor : (SolidColorBrush)Application.Current.FindResource("InactiveColor");
         }
+
         OverlayWindow _overWin;
+
         private void OverlayClick(object sender, RoutedEventArgs e)
         {
             if (_overWin == null)
@@ -214,7 +224,6 @@ namespace Harry
 
             Overlay.FillColor = _overWin != null ? Pin.GlowColor : (SolidColorBrush)Application.Current.FindResource("InactiveColor");
         }
-
 
         private void CurrentModuleToggle(object sender, RoutedEventArgs e)
         {
@@ -233,8 +242,6 @@ namespace Harry
             }
         }
 
-
-
         private void PveOutCBClick(object sender, RoutedEventArgs e)
         {
             var m = CurrentModule as PveModule;
@@ -243,6 +250,7 @@ namespace Harry
                 m.ToggleSwitch(ref PveModule.Outbound);
             }
         }
+
         private void PveInCBClick(object sender, RoutedEventArgs e)
         {
             var m = CurrentModule as PveModule;
@@ -251,6 +259,7 @@ namespace Harry
                 m.ToggleSwitch(ref PveModule.Inbound);
             }
         }
+
         private void PveSlowInCBClick(object sender, RoutedEventArgs e)
         {
             var m = CurrentModule as PveModule;
@@ -259,6 +268,7 @@ namespace Harry
                 m.ToggleSwitch(ref PveModule.SlowInbound);
             }
         }
+
         private void PveSlowOutCBClick(object sender, RoutedEventArgs e)
         {
             var m = CurrentModule as PveModule;
@@ -267,18 +277,18 @@ namespace Harry
                 m.ToggleSwitch(ref PveModule.SlowOutbound);
             }
         }
+
         private void PveResyncCBClick(object sender, RoutedEventArgs e)
         {
             PveModule.AutoResync = PveResyncCB.Checked;
             Config.Save();
         }
+
         private void PveBufferCBClick(object sender, RoutedEventArgs e)
         {
             PveModule.Buffer = PveBufferCB.Checked;
             Config.Save();
         }
-
-
 
         private void PvpOutCBClick(object sender, RoutedEventArgs e)
         {
@@ -288,6 +298,7 @@ namespace Harry
                 m.ToggleSwitch(ref PvpModule.Outbound);
             }
         }
+
         private void PvpInCBClick(object sender, RoutedEventArgs e)
         {
             var m = CurrentModule as PvpModule;
@@ -296,6 +307,7 @@ namespace Harry
                 m.ToggleSwitch(ref PvpModule.Inbound);
             }
         }
+
         private void PvpResyncCBClick(object sender, RoutedEventArgs e)
         {
             PvpModule.AutoResync = PvpResyncCB.Checked;
@@ -308,37 +320,38 @@ namespace Harry
             Config.Save();
         }
 
-
         private void InstBufferCBClick(object sender, RoutedEventArgs e)
         {
             InstanceModule.Buffer = InstBufferCB.Checked;
             Config.Save();
         }
 
-
-
         private void MS_PlayersClick(object sender, RoutedEventArgs e)
         {
             MultishotModule.PlayersMode = MS_PVP.Checked;
             Config.Save();
         }
+
         private void MS_DetectClick(object sender, RoutedEventArgs e)
         {
             MultishotModule.WaitShot = MS_DETECT.Checked;
             Config.Save();
         }
+
         private void MS_InboundClick(object sender, RoutedEventArgs e)
         {
             Config.GetNamed(CurrentModuleName).Settings["Inbound"] = MS_INBOUND.Checked;
             MultishotModule.Inbound = MS_INBOUND.Checked;
             Config.Save();
         }
+
         private void MS_OutboundClick(object sender, RoutedEventArgs e)
         {
             Config.GetNamed(CurrentModuleName).Settings["Outbound"] = MS_OUTBOUND.Checked;
             MultishotModule.Outbound = MS_OUTBOUND.Checked;
             Config.Save();
         }
+
         private void MS_TogglableClick(object sender, RoutedEventArgs e)
         {
             Config.GetNamed(CurrentModuleName).Settings["Togglable"] = MS_TOGGLABLE.Checked;
@@ -358,19 +371,17 @@ namespace Harry
             Config.Save();
         }
 
-
-
         private void API_DisableClick(object sender, RoutedEventArgs e)
         {
             ApiModule.Disable = API_Disable.Checked;
             Config.Save();
         }
+
         private void API_BufferClick(object sender, RoutedEventArgs e)
         {
             ApiModule.Buffer = API_Buffer.Checked;
             Config.Save();
         }
-
 
         private void Slider_MouseWheel(object sender, MouseWheelEventArgs e)
         {
@@ -380,6 +391,7 @@ namespace Harry
                 e.Handled = true;
             }
         }
+
         private void MS_MaxTimeSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             MS_MaxTimeSlider.Value = MultishotModule.MaxTime = Math.Clamp(Math.Round(e.NewValue /  0.05) * 0.05, 0.5, 1.8);

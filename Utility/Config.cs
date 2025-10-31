@@ -40,6 +40,7 @@ namespace Harry
             Instance.Modules[name] = new ModuleSettingsBase();
             return Instance.Modules[name];
         }
+
         public static void Load()
         {
             Instance = File.Exists(ConfigPath)
@@ -80,6 +81,7 @@ namespace Harry
                 File.WriteAllText(ConfigPath, Instance.Serialize(true));
                 Logger.Info($"Config saved");
             }
+
             catch (Exception e)
             {
                 Logger.Error(e, additionalInfo: "Config save");

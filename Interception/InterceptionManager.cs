@@ -23,7 +23,6 @@ namespace Harry.Interception
             return Providers.FirstOrDefault(x => x.Name.StartsWith(name));
         }
 
-
         private static bool init = false;
         public static void Init()
         {
@@ -39,15 +38,12 @@ namespace Harry.Interception
             Modules.Add(new MultishotModule());
             Modules.Add(new ReconnectModule());
             Modules.Add(new ResModule());
-
             Modules.Add(new ApiModule());
             Modules.Add(new TimerModule());
             Modules.Add(new PauserModule());
             Modules.Add(new SoloModule());
-
             Modules.Add(new PvpModule());
             Modules.Add(new InstanceModule());
-
 
             var enabledNames = Config.Instance.Modules.Where(x => x.Value.Enabled).Select(x => x.Key);
             foreach (var disable in Modules.Where(x => x.IsEnabled && !enabledNames.Contains(x.Name)).ToArray())

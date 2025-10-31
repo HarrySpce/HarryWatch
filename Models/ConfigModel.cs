@@ -22,28 +22,28 @@ namespace Harry.Models
 
     public class Settings
     {
-        public string? Tracker_BungieName { get; set; } = null;
-        public bool Tracker_CountRaids { get; set; } = true;
-        public bool Tracker_CountDungeons { get; set; } = true;
-        public bool AltTabSupressKeybinds { get; set; } = true;
+        public string? Tracker_BungieName { get; set; } = null; // API tracker
+        public bool Tracker_CountRaids { get; set; } = true; // Count complete raids
+        public bool Tracker_CountDungeons { get; set; } = true; // Count complete dungeons
+        public bool AltTabSupressKeybinds { get; set; } = true; // Disable keybinds on alt-tab
 
-        public bool Overlay_StartOnLaunch { get; set; } = true;
-        public bool Overlay_ShowTime { get; set; } = false;
-        public bool Overlay_ShowTimer { get; set; } = true;
-        public bool Overlay_DisableOnInactivity { get; set; } = true;
-        public bool Overlay_DisplayOnlyTogglable { get; set; } = false;
-        public int Overlay_LeftOffset { get; set; } = 0;
-        public int Overlay_BottomOffset { get; set; } = 0;
+        public bool Overlay_StartOnLaunch { get; set; } = true; // Run overlay with app start
+        public bool Overlay_ShowTime { get; set; } = false; // Show current time in overlay
+        public bool Overlay_ShowTimer { get; set; } = true; // Show instance timer in overlay
+        public bool Overlay_DisableOnInactivity { get; set; } = true; // Hide overlay on inactivity
+        public bool Overlay_DisplayOnlyTogglable { get; set; } = false; // Hide untoggleable modules in overlay
+        public int Overlay_LeftOffset { get; set; } = 0; // Overlay x-offset
+        public int Overlay_BottomOffset { get; set; } = 0; // Overlay y-offset
 
-        public bool Window_DisplayClock { get; set; } = true;
-        public bool Window_DisplaySpeed { get; set; } = true;
-        public int Window_TimerDecaySeconds { get; set; } = 10;
+        public bool Window_DisplayClock { get; set; } = true; // Display current time
+        public bool Window_DisplaySpeed { get; set; } = true; // Display connections info
+        public int Window_TimerDecaySeconds { get; set; } = 10; // Timer disappear time
 
-        public bool DB_SavePackets { get; set; } = true;
-        public bool DB_KeyPresses { get; set; } = false;
+        public bool DB_SavePackets { get; set; } = true; // Save packets to database
+        public bool DB_KeyPresses { get; set; } = false; // Log key presses
 
-        public bool AHK_AutoClose { get; set; } = true;
-        public bool AHK_AutoOpen { get; set; } = false;
+        public bool AHK_AutoClose { get; set; } = true; // Run last ahks with app start
+        public bool AHK_AutoOpen { get; set; } = false; // Close ahks with app exit
     }
 
     public class ModuleSettingsBase

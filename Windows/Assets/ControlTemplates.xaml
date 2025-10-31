@@ -23,6 +23,7 @@
             </GradientStopCollection>
         </GradientBrush.GradientStops>
     </LinearGradientBrush>
+    
     <LinearGradientBrush x:Key="StandardBrush" StartPoint="0,0" EndPoint="0,1">
         <GradientBrush.GradientStops>
             <GradientStopCollection>
@@ -31,6 +32,7 @@
             </GradientStopCollection>
         </GradientBrush.GradientStops>
     </LinearGradientBrush>
+    
     <LinearGradientBrush x:Key="PressedBrush" StartPoint="0,0" EndPoint="0,1">
         <GradientBrush.GradientStops>
             <GradientStopCollection>
@@ -65,6 +67,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
     <Style x:Key="ScrollBarPageButton" TargetType="{x:Type RepeatButton}">
         <Setter Property="Visibility" Value="Hidden"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
@@ -117,6 +120,7 @@
             <RepeatButton Grid.Row="3" Style="{StaticResource ScrollBarLineButton}" Height="18" Command="ScrollBar.LineDownCommand" Content="M 0 0 L 4 4 L 8 0 Z"/>
         </Grid>
     </ControlTemplate>
+    
     <ControlTemplate x:Key="HorizontalScrollBar" TargetType="{x:Type ScrollBar}">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -140,6 +144,7 @@
             <RepeatButton Grid.Column="3" Style="{StaticResource ScrollBarLineButton}" Width="18" Command="ScrollBar.LineRightCommand" Content="M 0 0 L 4 4 L 0 8 Z"/>
         </Grid>
     </ControlTemplate>
+    
     <Style x:Key="{x:Type ScrollBar}" TargetType="{x:Type ScrollBar}">
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="OverridesDefaultStyle" Value="true"/>
@@ -235,6 +240,7 @@
                     </Setter.Value>
                 </Setter>
             </Trigger>
+            
             <Trigger Property="Orientation" Value="Vertical">
                 <Setter Property="Template">
                     <Setter.Value>
@@ -304,7 +310,7 @@
             <Setter.Value>
                 <ControlTemplate TargetType="ComboBox">
                     <Grid>
-                        
+
                         <ToggleButton x:Name="ToggleButton" Focusable="false" 
                                       IsChecked="{Binding Path=IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" ClickMode="Press">
                             <ToggleButton.Template>
@@ -326,7 +332,6 @@
                                 </ControlTemplate>
                             </ToggleButton.Template>
                         </ToggleButton>
-
 
                         <ContentPresenter x:Name="ContentSite" IsHitTestVisible="False" 
                                           Content="{TemplateBinding SelectionBoxItem}" 
@@ -380,5 +385,4 @@
 
     </Style>
     <!--#endregion-->
-
 </ResourceDictionary>

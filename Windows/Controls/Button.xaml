@@ -22,6 +22,5 @@
                        FontFamily="Bahnschrift Light" 
                        Opacity="1"/>
         </Viewbox>
-        
     </Border>
 </UserControl>
