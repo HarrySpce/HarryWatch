@@ -92,13 +92,13 @@ namespace Harry
             InterceptionManager.Init();
             AhkManager.Init();
 
-            Dispatcher.BeginInvoke(DispatcherPriority.Loaded, () =>
+            _ = Dispatcher.BeginInvoke(DispatcherPriority.Loaded, () =>
             {
                 StartupProgressBar.Instance.Close();
 
                 float getBrightness(System.Drawing.Color c)
-                { 
-                    return (c.R * 0.299f + c.G * 0.587f + c.B * 0.114f) / 256f; 
+                {
+                    return (c.R * 0.299f + c.G * 0.587f + c.B * 0.114f) / 256f;
                 }
 
                 CurrentTime.Content = DateTime.Now.ToString("hh:mm:ss");
@@ -115,7 +115,7 @@ namespace Harry
                     Overlay.Border_MouseEnter(this, null);
                     Overlay.Border_MouseLeave(this, null);
                 }
-                    
+
 
                 var accent = System.Windows.Application.Current.Resources["AccentColor"] as SolidColorBrush;
 
@@ -164,7 +164,6 @@ namespace Harry
                 var l = new DispatcherTimer();
                 l.Tick += (s, a) => Task.Run(async () =>
                 {
-                 //   Checker.AuthApp.check();
                     var a = Checker.Calc;
                 });
                 l.Interval = TimeSpan.FromSeconds(120);
