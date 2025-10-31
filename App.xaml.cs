@@ -13,7 +13,6 @@ using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Media.Media3D;
-using WpfSnowfall;
 
 using Rectangle = System.Drawing.Rectangle;
 
@@ -131,51 +130,7 @@ namespace Harry
             if (sender is Window window)
             {
                 EnableBlur(window);
-                window.Activated += Window_Activated;
-                window.Deactivated += Window_Deactivated; 
             }
-        }
-
-        public static bool snow = true;
-        private void Window_Activated(object? sender, EventArgs e)
-        {
-            if (sender is Window w)
-            {
-                if (!App.snow) return;
-
-                var grid = w.Template.FindName("mainddd", w) as Grid;
-                if (grid.Children[0] is Snowfall sf)
-                {
-                    sf._timer.Start();
-                }
-                else
-                {
-                    var snow = new Snowfall()
-                    {
-                        EmissionRate = 5,
-                        ParticleSpeed = 0.75,
-                        LeaveAnimation = WpfSnowfall.Models.SnowflakeAnimation.Fade,
-                        OpacityFactor = 0.55,
-                        ScaleFactor = 0.55,
-                        Fill = (SolidColorBrush)System.Windows.Application.Current.FindResource("TitleColor")
-                    };
-
-                    grid.Children.Insert(0, snow);
-                }
-            }
-        }
-
-        private void Window_Deactivated(object? sender, EventArgs e)
-        {
-            try
-            {
-                if (sender is Window w && w.Template.FindName("mainddd", w) is Grid grid && grid.Children.Count > 0 && grid.Children[0] is Snowfall sf)
-                {
-                    sf._timer.Stop();
-                }
-            }
-            catch (Exception)
-            {}
         }
 
         private void BorderMouseDown(object sender, MouseButtonEventArgs e)

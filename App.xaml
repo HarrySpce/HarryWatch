@@ -6,7 +6,6 @@
              xmlns:media="clr-namespace:Harry.Controls"
              xmlns:math="http://hexinnovation.com/math"
              xmlns:hc="https://handyorg.github.io/handycontrol"
-             xmlns:sf="clr-namespace:WpfSnowfall"
              StartupUri="Windows/StartupProgressBar.xaml">
 
     <Application.Resources>

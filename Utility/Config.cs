@@ -46,7 +46,6 @@ namespace Harry
                 ? File.ReadAllText(ConfigPath).Deserialize<ConfigModel>()
                 : Instance ?? new ConfigModel() { Volume = 30 };
 
-            App.snow = Instance.Settings.Window_Snow;
             Logger.Info("Config loaded");
         }
 

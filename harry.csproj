@@ -28,7 +28,6 @@
     <None Remove="background1.jpg" />
     <None Remove="Windows\Assets\appLogo.ico" />
     <None Remove="Windows\Assets\KantumruyPro-Regular.ttf" />
-    <None Remove="Windows\Assets\snow.png" />
     <None Remove="Windows\Converters\PincushionDistortion.ps" />
   </ItemGroup>
 

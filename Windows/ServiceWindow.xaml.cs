@@ -61,7 +61,6 @@ namespace Harry
             MAIN_Clock.SetState(Config.Instance.Settings.Window_DisplayClock);
             MAIN_Speed.SetState(Config.Instance.Settings.Window_DisplaySpeed);
             MAIN_DecaySecs.Text = Config.Instance.Settings.Window_TimerDecaySeconds.ToString();
-            MAIN_Snow.SetState(Config.Instance.Settings.Window_Snow);
 
             AHK_Close.SetState(Config.Instance.Settings.AHK_AutoClose);
             AHK_Start.SetState(Config.Instance.Settings.AHK_AutoOpen);
@@ -107,13 +106,6 @@ namespace Harry
                     MainWindow.Instance.CurrentTime.ElementDisappear();
                 }
             }
-        }
-
-        private void MAIN_Snow_Click(object sender, RoutedEventArgs e)
-        {
-            Config.Instance.Settings.Window_Snow = MAIN_Snow.Checked;
-            App.snow = MAIN_Snow.Checked;
-            Config.Save();
         }
 
         private void MAIN_Speed_Click(object sender, RoutedEventArgs e)

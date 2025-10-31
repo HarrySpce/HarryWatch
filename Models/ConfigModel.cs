@@ -35,7 +35,6 @@ namespace Harry.Models
         public int Overlay_LeftOffset { get; set; } = 0;
         public int Overlay_BottomOffset { get; set; } = 0;
 
-        public bool Window_Snow { get; set; } = true;
         public bool Window_DisplayClock { get; set; } = true;
         public bool Window_DisplaySpeed { get; set; } = true;
         public int Window_TimerDecaySeconds { get; set; } = 10;

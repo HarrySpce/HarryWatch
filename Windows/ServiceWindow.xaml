@@ -64,7 +64,7 @@
                 </StackPanel.Resources>
 
 
-                <Label x:Name="User_Nickname" Content="f1Lthz4"/>
+                <Label x:Name="User_Nickname" Content=""/>
                 <Label Content=":"/>
                 <Label x:Name="User_Rank" Content="Debug"/>
             </StackPanel>
@@ -98,12 +98,6 @@
                             <Label Content="sec" FontFamily="{StaticResource Kantumruy}" Padding="6,1,6,0"/>
                         </StackPanel>
                     </Grid>
-
-                    <Grid>
-                        <controls:Checkbox x:Name="MAIN_Snow" Click="MAIN_Snow_Click"/>
-                        <Label Content="Snow"/>
-                    </Grid>
-
 
                     <Line Margin="5,3" X1="0" X2="270" 
                           StrokeThickness="1" Stroke="{StaticResource InactiveColor}"/>
